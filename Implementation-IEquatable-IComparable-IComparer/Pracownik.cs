@@ -84,6 +84,15 @@ namespace Implementation_IEquatable_IComparable_IComparer
 
         public override int GetHashCode() => (Nazwisko, DataZatrudnienia, Wynagrodzenie).GetHashCode();
        
+        public static bool Equals(Pracownik p1, Pracownik p2)
+        {
+            if (p1 == null || p2 == null) return false;
+            if (p1 == null && p2 == null) return true;
+
+            return p1.Equals(p2);
+        }
+
+       
 
 
     }
