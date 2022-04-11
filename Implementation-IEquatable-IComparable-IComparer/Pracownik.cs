@@ -86,13 +86,13 @@ namespace Implementation_IEquatable_IComparable_IComparer
        
         public static bool Equals(Pracownik p1, Pracownik p2)
         {
-            if (p1 == null || p2 == null) return false;
-            if (p1 == null && p2 == null) return true;
+            if (p1 is null || p2 is null) return false;
+            if (p1 is null && p2 is null) return true;
 
             return p1.Equals(p2);
         }
 
-       public static bool operator ==(Pracownik p1, Pracownik p2) => p1.Equals(p2);
+       public static bool operator ==(Pracownik p1, Pracownik p2) => Equals(p1, p2);
         public static bool operator !=(Pracownik p1, Pracownik p2) => !(p1 == p2);
 
 
