@@ -13,7 +13,8 @@ namespace Implementation_IEquatable_IComparable_IComparer
                 //Krok1();
                 //Krok2();
                 //Krok3();
-                Krok4();
+                //Krok4();
+                Krok5();
             }
 
             static void Krok1()
@@ -109,6 +110,30 @@ namespace Implementation_IEquatable_IComparable_IComparer
                     
                 foreach (var pracownik in sortedList)   
                     Console.WriteLine(pracownik);
+            }
+
+            static void Krok5()
+            {
+                var lista = new List<Pracownik>()
+    {
+        new Pracownik("CCC", new DateTime(2010, 10, 02), 1050),
+        new Pracownik("AAA", new DateTime(2010, 10, 01), 100),
+        new Pracownik("DDD", new DateTime(2010, 10, 03), 2000),
+        new Pracownik("AAA", new DateTime(2011, 10, 01), 1000),
+        new Pracownik("BBB", new DateTime(2010, 10, 01), 1050)
+    };
+                Console.WriteLine($"Lista pracowników:\n{string.Join('\n', lista)}");
+
+                var listaInt = new List<int> { 2, 5, 1, 2, 1, 7, 4, 5 };
+                Console.WriteLine($"Lista liczb: {string.Join(',', listaInt)}");
+
+                // wewnętrzny porządek w zbiorze
+                Console.WriteLine("--- Porządkowanie za pomocą własnej metody sortującej" + Environment.NewLine
+                    + "zgodnie z naturalnym porządkiem zdefiniowanym w klasie Pracownik ---");
+                Sortowanie.Sortuj(lista); // wywołanie metody "tradycyjnie"
+                Console.WriteLine(string.Join('\n', lista));
+                listaInt.Sortuj(); // wywołanie jako metody rozszerzajacej
+                Console.WriteLine(string.Join(',', listaInt));
             }
         }
     }
