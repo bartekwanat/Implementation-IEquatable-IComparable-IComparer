@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Implementation_IEquatable_IComparable_IComparer
 {
-    public class Pracownik
+    public class Pracownik : IEquatable<Pracownik>
     {
         private string nazwisko;
         public string Nazwisko
@@ -61,8 +61,29 @@ namespace Implementation_IEquatable_IComparable_IComparer
 
         public override string ToString()
         {
-            return $"{Nazwisko}, {DataZatrudnienia: d MMM yyyy}({CzasZatrudnienia}), {Wynagrodzenie}";
+            return $"{Nazwisko}, {DataZatrudnienia: d MMM yyyy} ({CzasZatrudnienia}), {Wynagrodzenie}";
         }
+
+        public bool Equals(Pracownik pracownik)
+        {
+            if (pracownik == null) return false;
+            if(Object.ReferenceEquals(this, pracownik)) return true;
+
+            return (Nazwisko == pracownik.Nazwisko &&
+                DataZatrudnienia == pracownik.DataZatrudnienia &&
+                Wynagrodzenie == pracownik.Wynagrodzenie);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Pracownik)
+                return Equals((Pracownik)obj);
+            else
+                return false;
+        }
+
+        public override int GetHashCode() => (Nazwisko, DataZatrudnienia, Wynagrodzenie).GetHashCode();
+       
 
 
     }
