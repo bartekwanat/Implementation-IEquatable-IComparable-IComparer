@@ -12,7 +12,8 @@ namespace Implementation_IEquatable_IComparable_IComparer
             {
                 //Krok1();
                 //Krok2();
-                Krok3();
+                //Krok3();
+                Krok4();
             }
 
             static void Krok1()
@@ -91,6 +92,23 @@ namespace Implementation_IEquatable_IComparable_IComparer
                 foreach (var pracownik in lista)
                     System.Console.WriteLine(pracownik);
 
+            }
+
+            static void Krok4()
+            {
+                var lista = new List<Pracownik>();
+                lista.Add(new Pracownik("CCC", new DateTime(2010, 10, 02), 1050));
+                lista.Add(new Pracownik("AAA", new DateTime(2010, 10, 01), 100));
+                lista.Add(new Pracownik("DDD", new DateTime(2010, 10, 03), 2000));
+                lista.Add(new Pracownik("AAA", new DateTime(2011, 10, 01), 1000));
+                lista.Add(new Pracownik("BBB", new DateTime(2010, 10, 01), 1050));
+
+               var sortedList =  lista.OrderBy(x => x.Wynagrodzenie)
+                    .ThenBy(x => x.Nazwisko)
+                    .ToList();
+                    
+                foreach (var pracownik in sortedList)   
+                    Console.WriteLine(pracownik);
             }
         }
     }
