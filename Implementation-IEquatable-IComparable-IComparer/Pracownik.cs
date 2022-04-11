@@ -92,7 +92,8 @@ namespace Implementation_IEquatable_IComparable_IComparer
             return p1.Equals(p2);
         }
 
-       
+       public static bool operator ==(Pracownik p1, Pracownik p2) => p1.Equals(p2);
+        public static bool operator !=(Pracownik p1, Pracownik p2) => !(p1 == p2);
 
 
     }
