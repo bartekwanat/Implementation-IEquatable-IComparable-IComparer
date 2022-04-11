@@ -16,13 +16,16 @@ namespace Implementation_IEquatable_IComparable_IComparer
         }
 
         private DateTime dataZatrudnienia;
-        public DateTime? DataZatrudnienia
+        public DateTime DataZatrudnienia
         {
             get => dataZatrudnienia;
             set
             {
                 if (dataZatrudnienia > DateTime.Now)
+                {
                     throw new ArgumentException();
+                }
+                else dataZatrudnienia = value;
             }
         }
 
@@ -33,8 +36,14 @@ namespace Implementation_IEquatable_IComparable_IComparer
             set
             {
                 if (wynagrodzenie < 0) wynagrodzenie = 0;
+                else wynagrodzenie = value;
             }
         }
+
+        public int CzasZatrudnienia {
+            get => (DateTime.Now - DataZatrudnienia).Days / 30;  
+        }
+        
 
         public Pracownik() 
         {
@@ -52,7 +61,7 @@ namespace Implementation_IEquatable_IComparable_IComparer
 
         public override string ToString()
         {
-            return $"{Nazwisko}, {DataZatrudnienia: d MMM yyyy}, {Wynagrodzenie}";
+            return $"{Nazwisko}, {DataZatrudnienia: d MMM yyyy}({CzasZatrudnienia}), {Wynagrodzenie}";
         }
 
 

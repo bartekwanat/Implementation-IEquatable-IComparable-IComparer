@@ -9,7 +9,7 @@ namespace Implementation_IEquatable_IComparable_IComparer
            
             var pracownik = new Pracownik();
             pracownik.Nazwisko = "  Adam       ";
-            pracownik.DataZatrudnienia = new DateTime(2010, 10, 10);
+            pracownik.DataZatrudnienia = new DateTime(2010, 04, 10);
             pracownik.Wynagrodzenie = 1500;
             Console.WriteLine(pracownik.ToString());
 
