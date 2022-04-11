@@ -13,6 +13,7 @@ namespace Implementation_IEquatable_IComparable_IComparer
             get => nazwisko;
             set => nazwisko = String.Concat(value.Where(c => !char.IsWhiteSpace(c)));
                  }
+
         private DateTime dataZatrudnienia;
         public DateTime? DataZatrudnienia 
         { 
@@ -22,7 +23,16 @@ namespace Implementation_IEquatable_IComparable_IComparer
                     throw new ArgumentException();
             } 
         }
-        public decimal Wynagrodzenie { get; set; }
+
+        private decimal wynagrodzenie;
+        public decimal Wynagrodzenie
+        {
+            get => wynagrodzenie;
+            set
+            {
+                if (wynagrodzenie < 0 ) wynagrodzenie = 0;
+            }
+        }
 
     }
 }
