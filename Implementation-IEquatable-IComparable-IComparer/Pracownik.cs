@@ -9,19 +9,21 @@ namespace Implementation_IEquatable_IComparable_IComparer
     public class Pracownik
     {
         private string nazwisko;
-        public string Nazwisko { 
+        public string Nazwisko
+        {
             get => nazwisko;
             set => nazwisko = String.Concat(value.Where(c => !char.IsWhiteSpace(c)));
-                 }
+        }
 
         private DateTime dataZatrudnienia;
-        public DateTime? DataZatrudnienia 
-        { 
+        public DateTime? DataZatrudnienia
+        {
             get => dataZatrudnienia;
-            set {
+            set
+            {
                 if (dataZatrudnienia > DateTime.Now)
                     throw new ArgumentException();
-            } 
+            }
         }
 
         private decimal wynagrodzenie;
@@ -30,14 +32,29 @@ namespace Implementation_IEquatable_IComparable_IComparer
             get => wynagrodzenie;
             set
             {
-                if (wynagrodzenie < 0 ) wynagrodzenie = 0;
+                if (wynagrodzenie < 0) wynagrodzenie = 0;
             }
+        }
+
+        public Pracownik() 
+        {
+            Nazwisko = "Anonim";
+            DataZatrudnienia = DateTime.Now;
+            Wynagrodzenie = 0;
+        }
+
+        public Pracownik(string nazwisko, DateTime dataZatrudnienia, decimal wynagrodzenie)
+        {
+            Nazwisko = nazwisko;
+            DataZatrudnienia = dataZatrudnienia;
+            Wynagrodzenie = wynagrodzenie;
         }
 
         public override string ToString()
         {
-            return $"{Nazwisko}, {DataZatrudnienia : d MMM yyyy}, {Wynagrodzenie}";
+            return $"{Nazwisko}, {DataZatrudnienia: d MMM yyyy}, {Wynagrodzenie}";
         }
+
 
     }
 }
