@@ -11,7 +11,8 @@ namespace Implementation_IEquatable_IComparable_IComparer
 
             {
                 //Krok1();
-                Krok2();
+                //Krok2();
+                Krok3();
             }
 
             static void Krok1()
@@ -69,7 +70,28 @@ namespace Implementation_IEquatable_IComparable_IComparer
 
             }
 
+            static void Krok3()
+            {
+                var lista = new List<Pracownik>();
+                lista.Add(new Pracownik("CCC", new DateTime(2010, 10, 02), 1050));
+                lista.Add(new Pracownik("AAA", new DateTime(2010, 10, 01), 100));
+                lista.Add(new Pracownik("DDD", new DateTime(2010, 10, 03), 2000));
+                lista.Add(new Pracownik("AAA", new DateTime(2011, 10, 01), 1000));
+                lista.Add(new Pracownik("BBB", new DateTime(2010, 10, 01), 1050));
 
+                Console.WriteLine(lista); //wypisze typ, a nie zawartość listy
+                foreach (var pracownik in lista)
+                    System.Console.WriteLine(pracownik);
+
+                Console.WriteLine("--- Zewnętrzny porządek - obiekt typu IComparer" + Environment.NewLine
+                                    + "najpierw według czasu zatrudnienia (w miesiącach), " + Environment.NewLine
+                                    + "a później według wynagrodzenia - wszystko rosnąco");
+
+                lista.Sort(new WgCzasuZatrudnieniaPotemWgWynagrodzeniaComparer());
+                foreach (var pracownik in lista)
+                    System.Console.WriteLine(pracownik);
+
+            }
         }
     }
 }
