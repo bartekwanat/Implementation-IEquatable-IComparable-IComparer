@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Implementation_IEquatable_IComparable_IComparer
 {
@@ -8,7 +10,8 @@ namespace Implementation_IEquatable_IComparable_IComparer
         {
 
             {
-                Krok1();
+                //Krok1();
+                Krok2();
             }
 
             static void Krok1()
@@ -45,6 +48,27 @@ namespace Implementation_IEquatable_IComparable_IComparer
                 Console.WriteLine($"p1.Equals(p3): {p1.Equals(p4)}");
                 Console.WriteLine($"p1 == p4: {p1 == p4}");
             }
+
+            static void Krok2()
+            {
+                var lista = new List<Pracownik>();
+
+                lista.Add(new Pracownik("CCC", new DateTime(2010, 10, 02), 1050));
+                lista.Add(new Pracownik("AAA", new DateTime(2010, 10, 01), 100));
+                lista.Add(new Pracownik("DDD", new DateTime(2010, 10, 03), 2000));
+                lista.Add(new Pracownik("AAA", new DateTime(2011, 10, 01), 1000));
+                lista.Add(new Pracownik("BBB", new DateTime(2010, 10, 01), 1050));
+
+
+                lista.Sort();
+
+
+                foreach (var pracownik in lista)
+                    Console.WriteLine(pracownik);
+
+
+            }
+
 
         }
     }

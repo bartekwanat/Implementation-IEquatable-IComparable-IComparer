@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Implementation_IEquatable_IComparable_IComparer
 {
-    public class Pracownik : IEquatable<Pracownik>
+    public class Pracownik : IEquatable<Pracownik>, IComparable<Pracownik>
     {
         private string nazwisko;
         public string Nazwisko
@@ -40,12 +40,13 @@ namespace Implementation_IEquatable_IComparable_IComparer
             }
         }
 
-        public int CzasZatrudnienia {
-            get => (DateTime.Now - DataZatrudnienia).Days / 30;  
+        public int CzasZatrudnienia
+        {
+            get => (DateTime.Now - DataZatrudnienia).Days / 30;
         }
-        
 
-        public Pracownik() 
+
+        public Pracownik()
         {
             Nazwisko = "Anonim";
             DataZatrudnienia = DateTime.Now;
@@ -67,7 +68,7 @@ namespace Implementation_IEquatable_IComparable_IComparer
         public bool Equals(Pracownik pracownik)
         {
             if (pracownik == null) return false;
-            if(Object.ReferenceEquals(this, pracownik)) return true;
+            if (Object.ReferenceEquals(this, pracownik)) return true;
 
             return (Nazwisko == pracownik.Nazwisko &&
                 DataZatrudnienia == pracownik.DataZatrudnienia &&
@@ -83,7 +84,7 @@ namespace Implementation_IEquatable_IComparable_IComparer
         }
 
         public override int GetHashCode() => (Nazwisko, DataZatrudnienia, Wynagrodzenie).GetHashCode();
-       
+
         public static bool Equals(Pracownik p1, Pracownik p2)
         {
             if (p1 is null || p2 is null) return false;
@@ -92,7 +93,21 @@ namespace Implementation_IEquatable_IComparable_IComparer
             return p1.Equals(p2);
         }
 
-       public static bool operator ==(Pracownik p1, Pracownik p2) => Equals(p1, p2);
+        public int CompareTo(Pracownik other)
+        {
+            if (other is null) return 1;
+            if (this.Equals(other)) return 0;
+
+            if (this.Nazwisko != other.Nazwisko)
+                return this.Nazwisko.CompareTo(other.Nazwisko);
+
+            if (!this.DataZatrudnienia.Equals(other.DataZatrudnienia))
+                return this.DataZatrudnienia.CompareTo(other.DataZatrudnienia);
+
+            return this.Wynagrodzenie.CompareTo(other.Wynagrodzenie);
+        }
+
+        public static bool operator ==(Pracownik p1, Pracownik p2) => Equals(p1, p2);
         public static bool operator !=(Pracownik p1, Pracownik p2) => !(p1 == p2);
 
 
