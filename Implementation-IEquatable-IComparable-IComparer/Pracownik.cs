@@ -34,5 +34,10 @@ namespace Implementation_IEquatable_IComparable_IComparer
             }
         }
 
+        public override string ToString()
+        {
+            return $"{Nazwisko}, {DataZatrudnienia : d MMM yyyy}, {Wynagrodzenie}";
+        }
+
     }
 }

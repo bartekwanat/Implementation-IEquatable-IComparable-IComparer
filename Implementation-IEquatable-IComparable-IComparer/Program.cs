@@ -6,12 +6,12 @@ namespace Implementation_IEquatable_IComparable_IComparer
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+           
             var pracownik = new Pracownik();
-            pracownik.Nazwisko = "    Bart     ";
-            pracownik.Wynagrodzenie = 100;
-            pracownik.DataZatrudnienia = new DateTime(2010, 10, 01);
-            Console.WriteLine(pracownik.Nazwisko);
+            pracownik.Nazwisko = "  Adam       ";
+            pracownik.DataZatrudnienia = new DateTime(2010, 10, 10);
+            pracownik.Wynagrodzenie = 1500;
+            Console.WriteLine(pracownik.ToString());
 
         }
     }
